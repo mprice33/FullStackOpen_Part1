@@ -31,27 +31,6 @@ const Statistics = (props) => {
   }
 }
 
-//TODO remove old unusued average component. Will remove on final submission due to possible refactoring in future
-const Average = ({good, neutral, bad}) => {
-  const total = good + neutral + bad
-  const diff = good - bad
-  if (total === 0) {
-    return <p>average 0</p>
-  }else{
-    return <p>average {diff / total}</p>
-  }
-}
-
-//TODO remove old unusued average component. Will remove on final submission due to possible refactoring in future
-const Positive = ({good, neutral, bad}) => {
-  const total = good + neutral + bad
-  if (total === 0) {
-    return <p>positive 0 %</p>
-  }else{
-    return <p>positive {(good / total) * 100} %</p>
-  }
-}
-
 const Button = ({ handleClick, text }) => (
   <button onClick={handleClick}>
     {text}
