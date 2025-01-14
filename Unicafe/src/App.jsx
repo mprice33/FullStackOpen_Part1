@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 
-const StatisticLine = ({text, value}) => {
-  return <p>{text} {value}</p>
+const StatisticLine = ({ text, value }) => {
+  return <tr><td>{text}</td><td>{value}</td></tr>
 }
 
 const Statistics = (props) => {
@@ -10,21 +10,25 @@ const Statistics = (props) => {
     return <>
       <h1>statistics</h1>
       <br></br>
-      <StatisticLine text="good" value={props.good}></StatisticLine>
-      <StatisticLine text="neutral" value={props.neutral}></StatisticLine>
-      <StatisticLine text="bad" value={props.bad}></StatisticLine>
-      <StatisticLine text="all" value={props.good+props.neutral+props.bad}></StatisticLine>
-      <StatisticLine text="average" value={props.good+props.bad+props.neutral === 0 ? 0 : (props.good-props.bad)/(props.good+props.neutral+props.bad)}></StatisticLine>
-      <StatisticLine text="positive" value={props.good+props.bad+props.neutral === 0 ? 0 : (props.good / (props.good+props.neutral+props.bad))*100 + "%"}></StatisticLine>
-      </>
-    }
-    else{
-      return <>
+      <table>
+        <tbody>
+          <StatisticLine text="good" value={props.good}></StatisticLine>
+          <StatisticLine text="neutral" value={props.neutral}></StatisticLine>
+          <StatisticLine text="bad" value={props.bad}></StatisticLine>
+          <StatisticLine text="all" value={props.good + props.neutral + props.bad}></StatisticLine>
+          <StatisticLine text="average" value={props.good + props.bad + props.neutral === 0 ? 0 : (props.good - props.bad) / (props.good + props.neutral + props.bad)}></StatisticLine>
+          <StatisticLine text="positive" value={props.good + props.bad + props.neutral === 0 ? 0 : (props.good / (props.good + props.neutral + props.bad)) * 100 + "%"}></StatisticLine>
+        </tbody>
+      </table>
+    </>
+  }
+  else {
+    return <>
       <h1>statistics</h1>
       <br></br>
       <p>No feedback given</p>
-      </>
-    }
+    </>
+  }
 }
 
 //TODO remove old unusued average component. Will remove on final submission due to possible refactoring in future
