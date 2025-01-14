@@ -1,19 +1,21 @@
 import { useState } from 'react'
 
 
-
+const StatisticLine = ({text, value}) => {
+  return <p>{text} {value}</p>
+}
 
 const Statistics = (props) => {
   if (props.good > 0 || props.neutral > 0 || props.bad > 0) {
     return <>
       <h1>statistics</h1>
       <br></br>
-      <p>good {props.good}</p>
-      <p>neutral {props.neutral}</p>
-      <p>bad {props.bad}</p>
-      <p>total {props.good+props.neutral+props.bad}</p>
-      <Average good={props.good} neutral={props.neutral} bad={props.bad}></Average>
-      <Positive good={props.good} neutral={props.neutral} bad={props.bad}></Positive>
+      <StatisticLine text="good" value={props.good}></StatisticLine>
+      <StatisticLine text="neutral" value={props.neutral}></StatisticLine>
+      <StatisticLine text="bad" value={props.bad}></StatisticLine>
+      <StatisticLine text="all" value={props.good+props.neutral+props.bad}></StatisticLine>
+      <StatisticLine text="average" value={props.good+props.bad+props.neutral === 0 ? 0 : (props.good-props.bad)/(props.good+props.neutral+props.bad)}></StatisticLine>
+      <StatisticLine text="positive" value={props.good+props.bad+props.neutral === 0 ? 0 : (props.good / (props.good+props.neutral+props.bad))*100 + "%"}></StatisticLine>
       </>
     }
     else{
@@ -25,6 +27,7 @@ const Statistics = (props) => {
     }
 }
 
+//TODO remove old unusued average component. Will remove on final submission due to possible refactoring in future
 const Average = ({good, neutral, bad}) => {
   const total = good + neutral + bad
   const diff = good - bad
@@ -35,6 +38,7 @@ const Average = ({good, neutral, bad}) => {
   }
 }
 
+//TODO remove old unusued average component. Will remove on final submission due to possible refactoring in future
 const Positive = ({good, neutral, bad}) => {
   const total = good + neutral + bad
   if (total === 0) {
@@ -43,6 +47,12 @@ const Positive = ({good, neutral, bad}) => {
     return <p>positive {(good / total) * 100} %</p>
   }
 }
+
+const Button = ({ handleClick, text }) => (
+  <button onClick={handleClick}>
+    {text}
+  </button>
+)
 
 const App = () => {
   // save clicks of each button to its own state
@@ -54,9 +64,9 @@ const App = () => {
     <div>
     <h1>give feedback</h1>
     <br></br>
-    <button onClick={() => setGood(good + 1)}>good</button>
-    <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
-    <button onClick={() => setBad(bad + 1)}>bad</button>
+    <Button handleClick={() => setGood(good + 1)} text={"good"}></Button>
+    <Button handleClick={() => setNeutral(neutral + 1)} text={"neutral"}></Button>
+    <Button handleClick={() => setBad(bad + 1)} text={"bad"}></Button>
     <Statistics good={good} neutral={neutral} bad={bad}></Statistics>
     </div>
     )
