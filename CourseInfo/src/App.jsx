@@ -1,35 +1,87 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+const Header = (props) => {
+  return <>
+    <h1>{props.course}</h1>
+  </>
+}
 
-function App() {
-  const [count, setCount] = useState(0)
+const Content = (props) => {
+  return <>
+    <p>
+      {props.parts[0].part} {props.parts[0].exercise}
+    </p>
+    <p>
+      {props.parts[1].part} {props.parts[1].exercise}
+    </p>
+    <p>
+      {props.parts[2].part} {props.parts[2].exercise}
+    </p>
+  </>
+}
+
+const Total = (props) => {
+  return <>
+    <p>Number of exercises {props.sum}</p>
+  </>
+}
+/*
+const App = () => {
+  const course = 'Half Stack application development'
+  const part1 = 'Fundamentals of React'
+  const exercises1 = 10
+  const part2 = 'Using props to pass data'
+  const exercises2 = 7
+  const part3 = 'State of a component'
+  const exercises3 = 14
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    <div>
+      <h1>{course}</h1>
+      <p>
+        {part1} {exercises1}
       </p>
-    </>
+      <p>
+        {part2} {exercises2}
+      </p>
+      <p>
+        {part3} {exercises3}
+      </p>
+      <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+    </div>
   )
 }
+*/
+
+const App = () => {
+  const course = 'Half Stack application development'
+  const part1 = 'Fundamentals of React'
+  const exercises1 = 10
+  const part2 = 'Using props to pass data'
+  const exercises2 = 7
+  const part3 = 'State of a component'
+  const exercises3 = 14
+  const parts = [{
+    part: part1,
+    exercise: exercises1
+  },
+  {
+    part: part2,
+    exercise: exercises2
+  },
+  {
+    part: part3,
+    exercise: exercises3
+  }
+  ]
+
+
+  return (
+    <div>
+      <Header course={course} />
+      <Content parts={parts} />
+      <Total sum={exercises1 + exercises2 + exercises3} />
+    </div>
+  )
+}
+
 
 export default App
